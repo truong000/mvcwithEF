@@ -1,0 +1,75 @@
+﻿@model IEnumerable<webmvcEF.DTO.ProductListView>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<label for="cars">Lọc theo loại: </label>
+
+<select class="custom-select" id="txtCatID" name="txtCatID" style="min-width:200px;" asp-items="ViewBag.Danhmuc">
+    <option selected>Chọn tất cả </option>
+</select>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CatName)
+            </th>
+        </tr>
+    </thead>
+    <tbody id="show_data"></tbody>
+</table>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function() {
+            jQuery("#txtCatID").change(function() {
+                var catID = jQuery(this).children(":selected").attr("value");
+                catID = parseFloat(catID);
+                $('#txtCatID option')
+                    .removeAttr('selected');
+                $("#txtCatID > [value=" + catID + "]").attr("selected", "true");
+
+                $.ajax({
+                    url: "/ProductListView/ListProductView",
+                    datatype: "json",
+                    type: "GET",
+                    data: {
+                        CatID: catID,
+                    },
+                    async: true,
+                    success: function(response) {
+                        $("#show_data").html(response);
+                    },
+                    error: function(xhr) {
+                        alert('Đã xảy ra lỗi');
+                    }
+                });
+            });
+            ListCategory();
+        });
+
+        function ListCategory() {
+            $.ajax({
+                type: "GET",
+                url: "/ProductListView/ListProductView",
+                success: function(response) {
+                    $("#show_data").html(response);
+                },
+            });
+        };
+    </script>
+}
