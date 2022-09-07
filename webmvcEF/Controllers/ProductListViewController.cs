@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PagedList;
 using webmvcEF.DTO;
+
 
 namespace webmvcEF.Controllers
 {
@@ -20,9 +22,13 @@ namespace webmvcEF.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListProductView(int CatID)
+        public IActionResult ListProductView(int CatID, int page = 1)
         {
-            var list = _context.ProductListViews.ToList();
+            var pageNumber = page;
+            var pageSize = 5;
+
+            List<ProductListView> list = new List<ProductListView>();
+
             if (CatID != 0)
             {
                 list = _context.ProductListViews.Where(x => x.CategoryId == CatID).ToList();
@@ -31,6 +37,9 @@ namespace webmvcEF.Controllers
             {
                 list = _context.ProductListViews.ToList();
             }
+            PagedList<ProductListView> models = new PagedList<ProductListView>(list, page, pageSize);
+            ViewBag.CurrentCatID = CatID;
+            ViewBag.CurrentPage = page;
             return PartialView("View", list);
         }
 

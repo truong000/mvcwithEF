@@ -1,4 +1,5 @@
-﻿@model IEnumerable<webmvcEF.DTO.ProductListView>
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<webmvcEF.DTO.ProductListView>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,22 +17,26 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductName)
+                @Html.DisplayNameFor(model => model.First().ProductName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.First().Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Supplier)
+                @Html.DisplayNameFor(model => model.First().Supplier)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CatName)
+                @Html.DisplayNameFor(model => model.First().CatName)
             </th>
         </tr>
     </thead>
     <tbody id="show_data"></tbody>
 </table>
 
+
+<ul class="pagination">
+    <pager class="pager-container" list="@Model" asp-controller="ProductListView" asp-route-CatID="@ViewBag.CurrentCateID" asp-action="ListProductView" />
+</ul>
 
 @section Scripts{
     <script>

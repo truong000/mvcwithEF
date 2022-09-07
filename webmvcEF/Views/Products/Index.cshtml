@@ -1,4 +1,6 @@
-﻿@model IEnumerable<webmvcEF.DTO.Product>
+﻿@using PagedList.Core.Mvc
+@using Newtonsoft.Json
+@model PagedList.Core.IPagedList<webmvcEF.DTO.Product>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,24 +13,25 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<select class="custom-select" id="txtCatID" name="txtCatID" style="min-width:200px;" asp-items="ViewBag.Danhmuc">
+<select class="custom-select" id="txtCatID" name="txtCatID" style="min-width:200px;" asp-items="ViewBag.DanhMuc">
     <option selected>Chọn tất cả </option>
+    <option value="0" disabled selected>Lọc theo danh mục</option>
 </select>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductName)
+                @Html.DisplayNameFor(model => model.First().ProductName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.First().Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Supplier)
+                @Html.DisplayNameFor(model => model.First().Supplier)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                @Html.DisplayNameFor(model => model.First().Category)
             </th>
             <th></th>
         </tr>
@@ -58,3 +61,6 @@
         }
     </tbody>
 </table>
+<ul class="pagination">
+    <pager class="pager-container" list="@Model" asp-controller="Products" asp-route-CatID="@ViewBag.CurrentCateID" asp-action="Index" />
+</ul>

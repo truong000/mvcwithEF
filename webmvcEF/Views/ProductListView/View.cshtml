@@ -1,20 +1,21 @@
-﻿@model IEnumerable<webmvcEF.DTO.ProductListView>
+﻿@*@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<webmvcEF.DTO.ProductListView>*@
+@model IEnumerable<webmvcEF.DTO.ProductListView>
 
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Supplier)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CatName)
-            </td>
-        </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CatName)
+        </td>
+    </tr>
 }
-
-

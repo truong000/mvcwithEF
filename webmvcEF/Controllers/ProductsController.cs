@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PagedList.Core;
 using webmvcEF.DTO;
 
 namespace webmvcEF.Controllers
@@ -19,11 +20,33 @@ namespace webmvcEF.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index(int cat)
+        public IActionResult Index(int page = 1, int CatID = 0)
         {
-            var onlineShopContext = _context.Products.Include(p => p.Category);
-            ViewData["Danhmuc"] = new SelectList(_context.Categories, "Id", "CatName", cat);
-            return View(await onlineShopContext.ToListAsync());
+            var pageNumber = page;
+            var pageSize = 5;
+
+            List<Product> lsNews = new List<Product>();
+            if (CatID != 0)
+            {
+                lsNews = _context.Products
+                .AsNoTracking()
+                .Where(x => x.CategoryId == CatID)
+                .Include(x => x.Category)
+                .ToList();
+            }
+            else
+            {
+                lsNews = _context.Products
+                .AsNoTracking()
+                .Include(x => x.Category)
+                .ToList();
+            }
+            PagedList<Product> models = new PagedList<Product>(lsNews.AsQueryable(), pageNumber, pageSize);
+            ViewBag.CurrentCatID = CatID;
+            ViewBag.CurrentPage = pageNumber;
+
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "Id", "CatName", CatID);
+            return View(models);
         }
 
         // GET: Products/Details/5
