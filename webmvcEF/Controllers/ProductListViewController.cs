@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PagedList;
+using PagedList.Core;
 using webmvcEF.DTO;
 
 
@@ -15,18 +15,16 @@ namespace webmvcEF.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(int cat)
+        public IActionResult Index(int CatID)
         {
-            ViewData["Danhmuc"] = new SelectList(_context.Categories, "Id", "CatName", cat);
+
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "Id", "CatName", CatID);
             return View();
         }
 
         [HttpGet]
-        public IActionResult ListProductView(int CatID, int page = 1)
+        public IActionResult ListProductView(int CatID)
         {
-            var pageNumber = page;
-            var pageSize = 5;
-
             List<ProductListView> list = new List<ProductListView>();
 
             if (CatID != 0)
@@ -37,39 +35,36 @@ namespace webmvcEF.Controllers
             {
                 list = _context.ProductListViews.ToList();
             }
-            PagedList<ProductListView> models = new PagedList<ProductListView>(list, page, pageSize);
-            ViewBag.CurrentCatID = CatID;
-            ViewBag.CurrentPage = page;
             return PartialView("View", list);
         }
 
-        //public IActionResult Filter(int CatID = 0)
-        //{
-        //    var url = $"/ProductListView?CatID={CatID}";
-        //    if (CatID == 0)
-        //    {
-        //        url = $"/ProductListView";
-        //    }
-        //    return Json(new { status = "success", redirectUrl = url });
-        //}
-
-
-        //[HttpGet]
-        //public IActionResult GetData(string searchCategory)
+        //public IActionResult GetData(int CatID, int? page, int? pageSize)
         //{
         //    List<ProductListView> results = null;
-        //    if (!string.IsNullOrEmpty(searchCategory))
+        //    if (CatID != 0)
         //    {
-        //        results = _context.ProductListViews.Where(x => x.CatName.ToLower().Contains(searchCategory.Trim().ToLower())).ToList();
+        //        results = _context.ProductListViews.Where(x => x.CategoryId == CatID).ToList();
         //    }
         //    else
         //    {
         //        results = _context.ProductListViews.ToList();
         //    }
+
+        //    var _pageSize = pageSize ?? 2;
+        //    var pageIndex = page ?? 1;
+        //    var totalPage = results.Count;
+        //    var numberPage = Math.Ceiling((float)totalPage / _pageSize);
+        //    var start = (pageIndex - 1) * _pageSize;
+        //    results = results.Skip(start).Take(_pageSize).ToList();
         //    return Json(new
         //    {
         //        Data = results,
+        //        TotalItems = totalPage,
+        //        CurrentPage = pageIndex,
+        //        NumberPage = numberPage,
+        //        PageSize = _pageSize
         //    });
         //}
+
     }
 }

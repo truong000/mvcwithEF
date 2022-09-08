@@ -1,5 +1,5 @@
-﻿@using PagedList.Core.Mvc
-@model PagedList.Core.IPagedList<webmvcEF.DTO.ProductListView>
+﻿@model IEnumerable<webmvcEF.DTO.ProductListView>
+
 
 @{
     ViewData["Title"] = "Index";
@@ -34,9 +34,6 @@
 </table>
 
 
-<ul class="pagination">
-    <pager class="pager-container" list="@Model" asp-controller="ProductListView" asp-route-CatID="@ViewBag.CurrentCateID" asp-action="ListProductView" />
-</ul>
 
 @section Scripts{
     <script>
@@ -64,15 +61,41 @@
                     }
                 });
             });
+
             ListCategory();
+
+            $('#cars').change(function() {
+                FilterPageSize();
+            });
+
         });
 
         function ListCategory() {
+            //var pageSize = $('#cars').val();
             $.ajax({
                 type: "GET",
                 url: "/ProductListView/ListProductView",
                 success: function(response) {
                     $("#show_data").html(response);
+
+                },
+            });
+        };
+
+        function FilterPageSize() {
+            var pageSize = $('#cars').val();
+            $.ajax({
+                type: "GET",
+                url: "/ProductListView/ListProductView",
+                success: function(response) {
+                    $("#show_data").html(response);
+                    let options = {
+                        numberPerPage: pageSize, //Cantidad de datos por pagina
+                        goBar: true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
+                        pageCounter: true, //Contador de paginas, en cual estas, de cuantas paginas
+                    };
+
+                    paginate.init('.myTable', options);
                 },
             });
         };

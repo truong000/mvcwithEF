@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vqF6LHTKaX6MQ00tmup7wKakY+AvZ3Ayn7O4OWlW9kA=",
+  "Hash": "ONXngGUjdgzLLwFuJbCR8MO6V4JKh06YV6xOf56OP2A=",
   "Source": "webmvcEF",
   "BasePath": "_content/webmvcEF",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\wwwroot\\js\\paginate.js",
+      "SourceId": "webmvcEF",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\wwwroot\\",
+      "BasePath": "_content/webmvcEF",
+      "RelativePath": "js/paginate.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\paginate.js"
+    },
+    {
+      "Identity": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\wwwroot\\js\\paginate.min.js",
+      "SourceId": "webmvcEF",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\wwwroot\\",
+      "BasePath": "_content/webmvcEF",
+      "RelativePath": "js/paginate.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\paginate.min.js"
     },
     {
       "Identity": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\wwwroot\\js\\site.js",
