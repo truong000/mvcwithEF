@@ -20,5 +20,4 @@ namespace webmvcEF.DTO
         public virtual Inventory Inventory { get; set; } = null!;
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
-    
 }

@@ -80,6 +80,10 @@ namespace webmvcEF.DTO
             {
                 entity.ToTable("Order");
 
+                entity.Property(e => e.OrderDate).HasColumnType("datetime");
+
+                entity.Property(e => e.ShipDate).HasColumnType("datetime");
+
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CustomerId)

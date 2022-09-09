@@ -1,0 +1,53 @@
+﻿@model webmvcEF.DTO.Order
+
+@{
+    ViewData["Title"] = "ShowDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<webmvcEF.DTO.OrderProduct> orderDetails = ViewBag.ChiTiet;
+}
+
+<!-- Content Wrapper START -->
+<div class="main-content">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div id="invoice" class="p-h-30">
+                    <div class="m-t-20">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>SẢN PHẨM
+                                        <th>
+                                        <th>SỐ LƯỢNG</th>
+                                        <th></th>
+                                        <th>ĐƠN GIÁ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (orderDetails != null && orderDetails.Count() > 0)
+                                    {
+                                        int i = 1;
+                                        foreach (var item in orderDetails)
+                                        {
+                                            <tr>
+                                                <td>@i</td>
+                                                <td><a href="">@item.Product.ProductName</a></td>
+                                                <td></td>
+                                                <td>@item.Quantity</td>
+                                                <td></td>
+                                                <td>@item.Product.Price</td>
+                                            </tr>
+                                            i++;
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

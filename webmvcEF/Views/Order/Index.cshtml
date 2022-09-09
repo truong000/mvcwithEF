@@ -1,0 +1,108 @@
+﻿@using webmvcEF.DTO
+@model IEnumerable<webmvcEF.DTO.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+    List<OrderProduct> orderDetails = ViewBag.ChiTiet;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width: 10%">STT</th>
+            <th style="width: 20%">Họ và tên</th>
+            <th style="width: 30%">Thông tin liên hệ</th>
+            <th style="width: 30%">Thời gian</th>
+            <th style="width: 10%"></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="row @item.Id">
+                <td>@(++i)</td>
+                <td>
+                    @if (item.Customer.Gender == true)
+                    {
+                        <p>Giới tính: Nam</p>
+                    }
+                    else
+                    {
+                        <p>Giới tính: Nữ</p>
+                    }
+                    @item.Customer.FullName
+                </td>
+                <td>
+                    <p>@item.Customer.Email</p>
+                    <p>@item.Customer.Phone</p>
+                    <p>@item.Customer.Address</p>
+                </td>
+                <td>
+                    <p>Ngày đặt hàng: @item.OrderDate</p>
+                    @if (item.ShipDate.HasValue)
+                    {
+                        <p>Ngày ship hàng: @item.ShipDate</p>
+                    }
+                    else
+                    {
+                        <p>Đang xử lý </p>
+                    }
+                </td>
+                <td>
+                <td>
+                    <a class="btn btn-secondary btn-tone m-r-5" asp-area="" asp-controller="Order" asp-action="ShowDetail" asp-route-id="@item.Id">CHI TIẾT</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="modalCreate">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*@section Scripts{
+    <script>
+        $('#btnCreate').on('click', function() {
+            ListCategory();
+        });
+
+        function ListCategory(id) {
+            $.ajax({
+                type: "GET",
+                url: "/Order/ShowDetail",
+                success: function(response) {
+                    $('#modalCreate').modal('show');
+                },
+            });
+        };
+    </script>
+}*@
+
