@@ -28,17 +28,22 @@ namespace webmvcEF.Controllers
         [HttpGet]
         public IActionResult ListProduct(int CatID)
         {
-            List<ProductListView> list = new List<ProductListView>();
+            List<Product> list = new List<Product>();
 
             if (CatID != 0)
             {
-                list = _context.ProductListViews.Where(x => x.CategoryId == CatID).ToList();
+                list = _context.Products
+                    .Include(x => x.Category)
+                    .Where(x => x.CategoryId == CatID)
+                    .ToList();
             }
             else
             {
-                list = _context.ProductListViews.ToList();
+                list = _context.Products
+                    .Include(x => x.Category)
+                    .ToList();
             }
-            return PartialView("View", list);
+            return PartialView("_ViewProduct", list);
         }
 
 
@@ -97,7 +102,7 @@ namespace webmvcEF.Controllers
                         { throw; }
                     }
                 }
-                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewAll", _context.Products.Include(x => x.Category).ToList()) });
+                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewProduct", _context.Products.Include(x => x.Category).ToList()) });
             }
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEdit", product) });
         }
@@ -138,7 +143,7 @@ namespace webmvcEF.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAll", _context.Products.Include(x => x.Category).ToList()) });
+            return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewProduct", _context.Products.Include(x => x.Category).ToList()) });
         }
 
         private bool ProductExists(int id)

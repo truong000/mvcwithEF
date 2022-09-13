@@ -5,8 +5,45 @@
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="view-all">
-    @await Html.PartialAsync("_ViewAll", Model)
+
+@{
+    int i = 1;
+}
+
+<div class="col-md-8 offset-md-2">
+
+    <h1 class="text-center"><i class="fas fa-comments-dollar text-success"></i> List Product</h1>
+    <select class="custom-select" id="txtCatID" name="txtCatID" style="min-width:200px;" asp-items="ViewBag.CategoryId">
+        <option selected style="text-align: center;">Lọc theo danh mục </option>
+    </select>
+    <form asp-action="Index" class="d-inline" asp-controller="ProductsWithAjax">
+        <input type="submit" value="Reset" class="btn btn-secondary" />
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    No.
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Supplier)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th>
+                    <a onclick="showInPopup('@Url.Action("AddOrEdit","ProductsWithAjax",null,Context.Request.Scheme)','New Product')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Product</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="show_data"></tbody>
+    </table>
 </div>
 
 
@@ -27,7 +64,47 @@
 
 
 @section Scripts{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-    }
+    <script>
+        $(document).ready(function() {
+            jQuery("#txtCatID").change(function() {
+                var catID = jQuery(this).children(":selected").attr("value");
+                catID = parseFloat(catID);
+                $('#txtCatID option')
+                    .removeAttr('selected');
+                $("#txtCatID > [value=" + catID + "]").attr("selected", "true");
+
+                $.ajax({
+                    url: "/ProductsWithAjax/ListProduct",
+                    datatype: "json",
+                    type: "GET",
+                    data: {
+                        CatID: catID,
+                    },
+                    async: true,
+                    success: function(response) {
+                        $("#show_data").html(response);
+                    },
+                    error: function(xhr) {
+                        alert('Đã xảy ra lỗi');
+                    }
+                });
+            });
+
+            ListCategory();
+
+
+        });
+
+        function ListCategory() {
+            $.ajax({
+                type: "GET",
+                url: "/ProductsWithAjax/ListProduct",
+                success: function(response) {
+                    $("#show_data").html(response);
+
+                },
+            });
+        };
+
+    </script>
+}
