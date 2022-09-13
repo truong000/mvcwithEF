@@ -24,6 +24,7 @@ namespace webmvcEF.DTO
         public virtual DbSet<OrderProduct> OrderProducts { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<ProductListView> ProductListViews { get; set; } = null!;
+        public virtual DbSet<Transaction> Transactions { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -68,12 +69,6 @@ namespace webmvcEF.DTO
                 entity.ToTable("Inventory");
 
                 entity.Property(e => e.ProductId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.Product)
-                    .WithOne(p => p.Inventory)
-                    .HasForeignKey<Inventory>(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Inventory_Product");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -133,11 +128,6 @@ namespace webmvcEF.DTO
                     .IsUnicode(false);
 
                 entity.Property(e => e.Supplier).HasMaxLength(50);
-
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Products)
-                    .HasForeignKey(d => d.CategoryId)
-                    .HasConstraintName("FK_Product_Category");
             });
 
             modelBuilder.Entity<ProductListView>(entity =>
@@ -155,6 +145,19 @@ namespace webmvcEF.DTO
                     .IsUnicode(false);
 
                 entity.Property(e => e.Supplier).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Transaction>(entity =>
+            {
+                entity.Property(e => e.AccountNumber).HasMaxLength(12);
+
+                entity.Property(e => e.BankName).HasMaxLength(100);
+
+                entity.Property(e => e.BeneficiaryName).HasMaxLength(100);
+
+                entity.Property(e => e.Swiftcode)
+                    .HasMaxLength(11)
+                    .HasColumnName("SWIFTCode");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -31,14 +31,12 @@ namespace webmvcEF.Controllers
                 lsNews = _context.Products
                 .AsNoTracking()
                 .Where(x => x.CategoryId == CatID)
-                .Include(x => x.Category)
                 .ToList();
             }
             else
             {
                 lsNews = _context.Products
                 .AsNoTracking()
-                .Include(x => x.Category)
                 .ToList();
             }
             PagedList<Product> models = new PagedList<Product>(lsNews.AsQueryable(), pageNumber, pageSize);
@@ -58,7 +56,6 @@ namespace webmvcEF.Controllers
             }
 
             var product = await _context.Products
-                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -154,7 +151,6 @@ namespace webmvcEF.Controllers
             }
 
             var product = await _context.Products
-                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
