@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PagedList.Core;
 using webmvcEF.DTO;
 
 namespace webmvcEF.Controllers
@@ -20,31 +19,10 @@ namespace webmvcEF.Controllers
         }
 
         // GET: Products
-        public IActionResult Index(int page = 1, int CatID = 0)
+        public async Task<IActionResult> Index()
         {
-            var pageNumber = page;
-            var pageSize = 5;
-
-            List<Product> lsNews = new List<Product>();
-            if (CatID != 0)
-            {
-                lsNews = _context.Products
-                .AsNoTracking()
-                .Where(x => x.CategoryId == CatID)
-                .ToList();
-            }
-            else
-            {
-                lsNews = _context.Products
-                .AsNoTracking()
-                .ToList();
-            }
-            PagedList<Product> models = new PagedList<Product>(lsNews.AsQueryable(), pageNumber, pageSize);
-            ViewBag.CurrentCatID = CatID;
-            ViewBag.CurrentPage = pageNumber;
-
-            ViewData["DanhMuc"] = new SelectList(_context.Categories, "Id", "CatName", CatID);
-            return View(models);
+            var onlineShopContext = _context.Products.Include(p => p.Category);
+            return View(await onlineShopContext.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -56,6 +34,7 @@ namespace webmvcEF.Controllers
             }
 
             var product = await _context.Products
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -69,6 +48,7 @@ namespace webmvcEF.Controllers
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
+            ViewData["InventoryId"] = new SelectList(_context.Inventories, "Id", "Id");
             return View();
         }
 
@@ -77,7 +57,7 @@ namespace webmvcEF.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProductName,Price,Supplier,CategoryId")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,ProductName,Price,Supplier,CategoryId,InventoryId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +91,7 @@ namespace webmvcEF.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductName,Price,Supplier,CategoryId")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductName,Price,Supplier,CategoryId,InventoryId")] Product product)
         {
             if (id != product.Id)
             {
@@ -151,6 +131,7 @@ namespace webmvcEF.Controllers
             }
 
             var product = await _context.Products
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {

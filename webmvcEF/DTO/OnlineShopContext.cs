@@ -63,12 +63,7 @@ namespace webmvcEF.DTO
 
             modelBuilder.Entity<Inventory>(entity =>
             {
-                entity.HasKey(e => e.ProductId)
-                    .HasName("PK_Inventory_1");
-
                 entity.ToTable("Inventory");
-
-                entity.Property(e => e.ProductId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -128,6 +123,16 @@ namespace webmvcEF.DTO
                     .IsUnicode(false);
 
                 entity.Property(e => e.Supplier).HasMaxLength(50);
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.CategoryId)
+                    .HasConstraintName("FK_Product_Category");
+
+                entity.HasOne(d => d.Inventory)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.InventoryId)
+                    .HasConstraintName("FK_Product_Inventory1");
             });
 
             modelBuilder.Entity<ProductListView>(entity =>

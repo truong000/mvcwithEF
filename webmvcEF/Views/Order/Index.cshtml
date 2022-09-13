@@ -88,3 +88,21 @@
 </div>
 
 
+@*@section Scripts{
+    <script>
+        $('#btnCreate').on('click', function() {
+            ListCategory();
+        });
+
+        function ListCategory(id) {
+            $.ajax({
+                type: "GET",
+                url: "/Order/ShowDetail",
+                success: function(response) {
+                    $('#modalCreate').modal('show');
+                },
+            });
+        };
+    </script>
+}*@
+

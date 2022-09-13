@@ -3,6 +3,7 @@
 
 // Write your JavaScript code.
 
+
 showInPopup = (url, title) => {
     $.ajax({
         type: 'GET',
@@ -32,10 +33,11 @@ jQueryAjaxPost = form => {
                     $('#view-all').html(res.html)
                     $('#form-modal .modal-body').html('');
                     $('#form-modal .modal-title').html('');
+                    alert("Thành công");
                     $('#form-modal').modal('hide');
                 }
                 else
-                    alert("Lõi");
+                    alert("Thất bại");
                     $('#form-modal .modal-body').html(res.html);
             },
             error: function (err) {
@@ -48,3 +50,55 @@ jQueryAjaxPost = form => {
         console.log(ex)
     }
 }
+
+jQueryAjaxDelete = form => {
+    if (confirm('Are you sure to delete this record ?')) {
+        try {
+            $.ajax({
+                type: 'POST',
+                url: form.action,
+                data: new FormData(form),
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    $('#view-all').html(res.html);
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
+
+    //prevent default form submit event
+    return false;
+}
+
+$(document).ready(function () {
+    jQuery("#txtCatID").change(function () {
+        var catID = jQuery(this).children(":selected").attr("value");
+        catID = parseFloat(catID);
+        $('#txtCatID option')
+            .removeAttr('selected');
+        $("#txtCatID > [value=" + catID + "]").attr("selected", "true");
+
+        $.ajax({
+            url: "/ProductsWithAjax/Index",
+            datatype: "json",
+            type: "GET",
+            data: {
+                CatID: catID,
+            },
+            async: true,
+            success: function (response) {
+                alert('Thành công');
+                $('#view-all').html(response);
+            },
+            error: function (xhr) {
+                alert('Đã xảy ra lỗi');
+            }
+        });
+    });
+});

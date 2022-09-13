@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/webmvcEF.styles.css" asp-append-version="true" />
-    @*    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')" />*@
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     <header>
@@ -22,12 +21,6 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="ProductListView" asp-action="Index">LIST Sản phẩm Views</a>
                         </li>
                         <li class="nav-item">
@@ -40,10 +33,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Danh sách đơn hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ProductsWithAjax" asp-action="Index">DS sản phẩm</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Transactions" asp-action="Index">Test</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ProductsWithAjax" asp-action="Index">Product Ajax</a>
                         </li>
                     </ul>
                 </div>
@@ -54,22 +44,6 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
-
-
-    <div class="modal" tabindex="-1" role="dialog" id="form-modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                </div>
-            </div>
-        </div>
     </div>
 
     <footer class="border-top footer text-muted">
@@ -83,7 +57,6 @@
             crossorigin="anonymous"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/lib/fontawsome/js/fontawesome.min.js" asp-append-version="true"></script>
     <script src="~/js/paginate.js"> </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

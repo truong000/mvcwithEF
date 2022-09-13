@@ -67,6 +67,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdExpc3RWaWV3XFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/ProductsWithAjax/AddOrEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNXaXRoQWpheFxBZGRPckVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/ProductsWithAjax/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNXaXRoQWpheFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/ProductsWithAjax/_ViewAll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNXaXRoQWpheFxfVmlld0FsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Products/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -79,10 +91,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Products/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -93,30 +101,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Transactions/AddOrEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXEFkZE9yRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Transactions/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Transactions/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXERlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Transactions/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Transactions/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Transactions/_ViewAll.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3Rpb25zXF9WaWV3QWxsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/_ViewImports.cshtml]
