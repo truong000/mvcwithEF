@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PagedList.Core;
 using webmvcEF.DTO;
 
 namespace webmvcEF.Controllers
@@ -35,17 +36,29 @@ namespace webmvcEF.Controllers
                 list = _context.Products
                     .Include(x => x.Category)
                     .Where(x => x.CategoryId == CatID)
+                    .OrderByDescending(x => x.Id)
                     .ToList();
             }
             else
             {
                 list = _context.Products
                     .Include(x => x.Category)
+                    .OrderByDescending(x => x.Id)
                     .ToList();
             }
-            return PartialView("_ViewProduct", list);
+            return PartialView("_ViewProduct",list);
         }
 
+        [HttpPost]
+        public IActionResult Search(string search)
+        {
+            var product = _context.Products.Include(x => x.Category).ToList();
+            if (!string.IsNullOrEmpty(search))
+            {
+                product = product.Where(p => p.ProductName.ToLower().Contains(search.ToLower())).ToList();
+            }
+            return PartialView("_ViewProduct", product);
+        }
 
         // GET: ProductsWithAjax/Create
         public async Task<IActionResult> AddOrEdit(int id = 0)
@@ -102,7 +115,7 @@ namespace webmvcEF.Controllers
                         { throw; }
                     }
                 }
-                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewProduct", _context.Products.Include(x => x.Category).ToList()) });
+                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_ViewProduct", _context.Products.Include(x => x.Category).OrderByDescending(x => x.Id).ToList()) });
             }
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEdit", product) });
         }

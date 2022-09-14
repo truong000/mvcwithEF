@@ -7,7 +7,7 @@
 <div class="col-md-8 offset-md-2">
 
     <h1 class="text-center"><i class="fas fa-comments-dollar text-success"></i> Transaction History</h1>
-    <select class="custom-select" id="txtCatID" name="txtCatID" style="min-width:200px;" asp-items="ViewBag.CategoryId">
+    <select class="form-select" id="txtCatID" name="txtCatID" style="min-width:200px;" asp-items="ViewBag.CategoryId">
         <option selected style="text-align: center;">Lọc theo danh mục </option>
     </select>
     <form asp-action="Index" class="d-inline" asp-controller="ProductsWithAjax">

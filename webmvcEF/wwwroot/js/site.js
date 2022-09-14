@@ -38,7 +38,8 @@ jQueryAjaxPost = form => {
                 }
                 else
                     alert("Thất bại");
-                    $('#form-modal .modal-body').html(res.html);
+                    $('#form-modal .modal-body').html(res);
+                    $('#form-modal').modal('hide');
             },
             error: function (err) {
                 console.log(err)

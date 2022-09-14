@@ -15,8 +15,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = D:\TraIning GMO\WEEK_5_6\webmvcEF\webmvcEF
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/CustomerInfors/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJJbmZvcnNcSW5kZXguY3NodG1s
+[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/AccountCustomer/Resgister.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEN1c3RvbWVyXFJlc2dpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Customers/Create.cshtml]

@@ -10,77 +10,123 @@
     int i = 1;
 }
 
-<div class="col-md-8 offset-md-2">
 
-    <h1 class="text-center"><i class="fas fa-comments-dollar text-success"></i> List Product</h1>
-    <select class="custom-select" id="txtCatID" name="txtCatID" style="min-width:200px;" asp-items="ViewBag.CategoryId">
-        <option selected style="text-align: center;">Lọc theo danh mục </option>
-    </select>
-    <form asp-action="Index" class="d-inline" asp-controller="ProductsWithAjax">
-        <input type="submit" value="Reset" class="btn btn-secondary" />
-    </form>
-    <table class="table">
+
+<h1 class="text-center"> List Product</h1>
+<div class="row row_bar">
+    <div class="filter_bar">
+        <select class="form-select" id="txtCatID" name="txtCatID" style="min-width:200px;" asp-items="ViewBag.CategoryId">
+            <option selected style="text-align: center;">Filter by product type</option>
+        </select>
+    </div>
+    <div class="search_bar">
+        <input type="search" id="gsearch" name="gsearch" class="form-control" style="border-color: #cad1cf;" placeholder="Search...">
+        <input type="submit" id="btn-search" class="btn btn-secondary" value="Search">
+    </div>
+    <div class="refresh_bar">
+        <form asp-action="Index" class="d-inline" asp-controller="ProductsWithAjax">
+            <input type="submit" value="Reset" class="btn btn-warning" />
+        </form>
+    </div>
+    <br />
+    <br />
+
+    <table class="table table-hover table-bordered">
         <thead>
-            <tr>
+            <tr id="row_tbl">
                 <th>
                     No.
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ProductName)
+                    Product name
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Price)
+                    Price
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Supplier)
+                    Supplier
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Category)
+                    Category name
                 </th>
-                <th>
+                <th id="btn_action">
                     <a onclick="showInPopup('@Url.Action("AddOrEdit","ProductsWithAjax",null,Context.Request.Scheme)','New Product')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Product</a>
                 </th>
             </tr>
         </thead>
         <tbody id="show_data"></tbody>
     </table>
-</div>
 
 
-<div class="modal" tabindex="-1" role="dialog" id="form-modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
+
+    <div class="modal" tabindex="-1" role="dialog" id="form-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-@section Scripts{
-    <script>
-        $(document).ready(function() {
-            jQuery("#txtCatID").change(function() {
-                var catID = jQuery(this).children(":selected").attr("value");
-                catID = parseFloat(catID);
-                $('#txtCatID option')
-                    .removeAttr('selected');
-                $("#txtCatID > [value=" + catID + "]").attr("selected", "true");
+    @section Scripts{
+        <script>
+            $(document).ready(function() {
+                jQuery("#txtCatID").change(function() {
+                    var catID = jQuery(this).children(":selected").attr("value");
+                    catID = parseFloat(catID);
+                    $('#txtCatID option')
+                        .removeAttr('selected');
+                    $("#txtCatID > [value=" + catID + "]").attr("selected", "true");
 
+                    $.ajax({
+                        url: "/ProductsWithAjax/ListProduct",
+                        datatype: "json",
+                        type: "GET",
+                        data: {
+                            CatID: catID,
+                        },
+                        async: true,
+                        success: function(response) {
+                            $("#show_data").html(response);
+                        },
+                        error: function(xhr) {
+                            alert('Đã xảy ra lỗi');
+                        }
+                    });
+                });
+
+                ListCategory();
+
+                jQuery('#btn-search').on('click', function() {
+                    SearchProduct();
+                })
+
+            });
+
+            function ListCategory() {
                 $.ajax({
-                    url: "/ProductsWithAjax/ListProduct",
-                    datatype: "json",
                     type: "GET",
-                    data: {
-                        CatID: catID,
+                    url: "/ProductsWithAjax/ListProduct",
+                    success: function(response) {
+                        $("#show_data").html(response);
                     },
-                    async: true,
+                });
+            };
+
+            function SearchProduct() {
+                $.ajax({
+                    type: "POST",
+                    url: "/ProductsWithAjax/Search",
+                    data: {
+                        "search": $('#gsearch').val()
+                    },
                     success: function(response) {
                         $("#show_data").html(response);
                     },
@@ -88,23 +134,7 @@
                         alert('Đã xảy ra lỗi');
                     }
                 });
-            });
+            }
 
-            ListCategory();
-
-
-        });
-
-        function ListCategory() {
-            $.ajax({
-                type: "GET",
-                url: "/ProductsWithAjax/ListProduct",
-                success: function(response) {
-                    $("#show_data").html(response);
-
-                },
-            });
-        };
-
-    </script>
-}
+        </script>
+    }

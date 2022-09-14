@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ONXngGUjdgzLLwFuJbCR8MO6V4JKh06YV6xOf56OP2A=",
+  "Hash": "vLi40myX/UdNjH8tyv+xZFqiPjYVEywSPHDDanWIqow=",
   "Source": "webmvcEF",
   "BasePath": "_content/webmvcEF",
   "Mode": "Default",
@@ -49,6 +49,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\webmvcEF.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\wwwroot\\assets\\asp-net-core-10.jpg",
+      "SourceId": "webmvcEF",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\wwwroot\\",
+      "BasePath": "_content/webmvcEF",
+      "RelativePath": "assets/asp-net-core-10.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\asp-net-core-10.jpg"
+    },
+    {
+      "Identity": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\wwwroot\\assets\\hello.jpg",
+      "SourceId": "webmvcEF",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\wwwroot\\",
+      "BasePath": "_content/webmvcEF",
+      "RelativePath": "assets/hello.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\hello.jpg"
     },
     {
       "Identity": "D:\\TraIning GMO\\WEEK_5_6\\webmvcEF\\webmvcEF\\wwwroot\\css\\site.css",
