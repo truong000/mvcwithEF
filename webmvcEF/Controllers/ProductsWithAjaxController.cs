@@ -10,6 +10,7 @@ using webmvcEF.DTO;
 
 namespace webmvcEF.Controllers
 {
+    [Microsoft.AspNetCore.Authorization.Authorize]
     public class ProductsWithAjaxController : Controller
     {
         private readonly OnlineShopContext _context;
@@ -30,7 +31,6 @@ namespace webmvcEF.Controllers
         public IActionResult ListProduct(int CatID)
         {
             List<Product> list = new List<Product>();
-
             if (CatID != 0)
             {
                 list = _context.Products
@@ -38,6 +38,7 @@ namespace webmvcEF.Controllers
                     .Where(x => x.CategoryId == CatID)
                     .OrderByDescending(x => x.Id)
                     .ToList();
+
             }
             else
             {
@@ -46,7 +47,7 @@ namespace webmvcEF.Controllers
                     .OrderByDescending(x => x.Id)
                     .ToList();
             }
-            return PartialView("_ViewProduct",list);
+            return PartialView("_ViewProduct", list);
         }
 
         [HttpPost]

@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<webmvcEF.DTO.Product>
-
 @{
     ViewData["Title"] = "Index";
     //Layout = "~/Views/Shared/_Layout.cshtml";
@@ -57,76 +56,42 @@
         <tbody id="show_data"></tbody>
     </table>
 
+</div>
 
-
-    <div class="modal" tabindex="-1" role="dialog" id="form-modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                </div>
+<div class="modal" tabindex="-1" role="dialog" id="form-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
             </div>
         </div>
     </div>
+</div>
 
 
-    @section Scripts{
-        <script>
-            $(document).ready(function() {
-                jQuery("#txtCatID").change(function() {
-                    var catID = jQuery(this).children(":selected").attr("value");
-                    catID = parseFloat(catID);
-                    $('#txtCatID option')
-                        .removeAttr('selected');
-                    $("#txtCatID > [value=" + catID + "]").attr("selected", "true");
+@section Scripts{
+    <script>
+        $(document).ready(function() {
+            jQuery("#txtCatID").change(function() {
+                var catID = jQuery(this).children(":selected").attr("value");
+                catID = parseFloat(catID);
+                $('#txtCatID option')
+                    .removeAttr('selected');
+                $("#txtCatID > [value=" + catID + "]").attr("selected", "true");
 
-                    $.ajax({
-                        url: "/ProductsWithAjax/ListProduct",
-                        datatype: "json",
-                        type: "GET",
-                        data: {
-                            CatID: catID,
-                        },
-                        async: true,
-                        success: function(response) {
-                            $("#show_data").html(response);
-                        },
-                        error: function(xhr) {
-                            alert('Đã xảy ra lỗi');
-                        }
-                    });
-                });
-
-                ListCategory();
-
-                jQuery('#btn-search').on('click', function() {
-                    SearchProduct();
-                })
-
-            });
-
-            function ListCategory() {
                 $.ajax({
-                    type: "GET",
                     url: "/ProductsWithAjax/ListProduct",
-                    success: function(response) {
-                        $("#show_data").html(response);
-                    },
-                });
-            };
-
-            function SearchProduct() {
-                $.ajax({
-                    type: "POST",
-                    url: "/ProductsWithAjax/Search",
+                    datatype: "json",
+                    type: "GET",
                     data: {
-                        "search": $('#gsearch').val()
+                        CatID: catID,
                     },
+                    async: true,
                     success: function(response) {
                         $("#show_data").html(response);
                     },
@@ -134,7 +99,41 @@
                         alert('Đã xảy ra lỗi');
                     }
                 });
-            }
+            });
 
-        </script>
+            ListCategory();
+
+            jQuery('#btn-search').on('click', function() {
+                SearchProduct();
+            })
+
+        });
+
+        function ListCategory() {
+            $.ajax({
+                type: "GET",
+                url: "/ProductsWithAjax/ListProduct",
+                success: function(response) {
+                    $("#show_data").html(response);
+                },
+            });
+        };
+
+        function SearchProduct() {
+            $.ajax({
+                type: "POST",
+                url: "/ProductsWithAjax/Search",
+                data: {
+                    "search": $('#gsearch').val()
+                },
+                success: function(response) {
+                    $("#show_data").html(response);
+                },
+                error: function(xhr) {
+                    alert('Đã xảy ra lỗi');
+                }
+            });
+        }
+
+    </script>
     }

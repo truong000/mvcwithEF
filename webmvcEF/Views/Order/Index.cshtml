@@ -8,35 +8,32 @@
     List<OrderProduct> orderDetails = ViewBag.ChiTiet;
 }
 
-<h1>Index</h1>
+<h1 style="text-align:center;">List Order</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+
+<table class="table table-hover table-bordered">
     <thead>
-        <tr>
-            <th style="width: 10%">STT</th>
-            <th style="width: 20%">Họ và tên</th>
-            <th style="width: 30%">Thông tin liên hệ</th>
-            <th style="width: 30%">Thời gian</th>
-            <th style="width: 10%"></th>
+        <tr id="row_tbl">
+            <th style="width: 10%">No.</th>
+            <th style="width: 20%">FullName</th>
+            <th style="width: 30%">Contact Info</th>
+            <th style="width: 30%">Processing Time</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr id="row @item.Id">
+            <tr id="row_text">
                 <td>@(++i)</td>
                 <td>
                     @if (item.Customer.Gender == true)
                     {
-                        <p>Giới tính: Nam</p>
+                        <p>Gender: Man</p>
                     }
                     else
                     {
-                        <p>Giới tính: Nữ</p>
+                        <p>Gender: Women</p>
                     }
                     @item.Customer.FullName
                 </td>
@@ -46,19 +43,18 @@
                     <p>@item.Customer.Address</p>
                 </td>
                 <td>
-                    <p>Ngày đặt hàng: @item.OrderDate</p>
+                    <p>Order date: @item.OrderDate</p>
                     @if (item.ShipDate.HasValue)
                     {
-                        <p>Ngày ship hàng: @item.ShipDate</p>
+                        <p>Ship date: @item.ShipDate</p>
                     }
                     else
                     {
-                        <p>Đang xử lý </p>
+                        <p>Processing </p>
                     }
                 </td>
                 <td>
-                <td>
-                    <a class="btn btn-secondary btn-tone m-r-5" asp-area="" asp-controller="Order" asp-action="ShowDetail" asp-route-id="@item.Id">CHI TIẾT</a>
+                    <a onclick="showInPopup('@Url.Action("ShowDetail","Order",new {id = item.Id},Context.Request.Scheme)','Details Order')" class="btn btn-info text-white"><i class="fa-solid fa-circle-info"></i> Details</a>
                 </td>
             </tr>
         }
@@ -67,42 +63,20 @@
 </table>
 
 
-<div class="modal" tabindex="-1" role="dialog" id="modalCreate">
+<div class="modal" tabindex="-1" role="dialog" id="form-modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
 
-@*@section Scripts{
-    <script>
-        $('#btnCreate').on('click', function() {
-            ListCategory();
-        });
-
-        function ListCategory(id) {
-            $.ajax({
-                type: "GET",
-                url: "/Order/ShowDetail",
-                success: function(response) {
-                    $('#modalCreate').modal('show');
-                },
-            });
-        };
-    </script>
-}*@
 

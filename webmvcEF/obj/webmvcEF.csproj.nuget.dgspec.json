@@ -76,9 +76,9 @@
               "target": "Package",
               "version": "[6.0.8, )"
             },
-            "PagedList": {
+            "NToastNotify": {
               "target": "Package",
-              "version": "[1.17.0, )"
+              "version": "[8.0.0, )"
             },
             "PagedList.Core.Mvc": {
               "target": "Package",
@@ -103,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }

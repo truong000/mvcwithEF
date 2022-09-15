@@ -10,8 +10,8 @@ namespace webmvcEF.Models
         [Required(ErrorMessage = "Please fill it out completely")]
         public string FullName { get; set; }
 
-        [Display(Name = "Age")]
-        public int? Gender { get; set; }
+        [Display(Name = "Gender")]
+        public bool? Gender { get; set; }
 
         [Display(Name = "Address")]
         [Required(ErrorMessage = "Please fill it out completely")]

@@ -1,0 +1,44 @@
+﻿@model webmvcEF.Models.CustomerModelView
+@{
+    ViewData["Title"] = "LoginAccount";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<section>
+    <!--Bắt Đầu Phần Hình Ảnh-->
+    <div class="img-bg">
+        <img src="~/assets/hello.jpg" alt="Hình Ảnh ">
+    </div>
+    <!--Kết Thúc Phần Hình Ảnh-->
+    <!--Bắt Đầu Phần Nội Dung-->
+    <div class="noi-dung">
+        <div class="form">
+            <h2>SIGN IN</h2>
+            <form asp-action="LoginAccount">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @if (ViewBag.Error != null)
+                {
+                    <span style="font-weight:Bold; color: red">@ViewBag.Error</span>
+                    
+                }
+                <div class="input-form">
+                    <span>Email</span>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="input-form">
+                    <span>Phone</span>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="input-form">
+                    <span>SignUp here: <a asp-controller="AccountCustomer" asp-action="Resgister"><i class="fa-solid fa-user-plus"></i></a></span>
+                </div>
+                <div class="input-form">
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--Kết Thúc Phần Nội Dung-->
+</section>

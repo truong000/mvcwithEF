@@ -19,20 +19,37 @@
                         <img id="logo-header" src="~/assets/asp-net-core-10.jpg">
                         ASP.NET core MVC
                     </div>
-                    <div class="tiltle-header-right sign-in">
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        <a asp-controller="AccountCustomer" asp-action="Resgister">
-                            Sign in
-                        </a>
 
+                    <div class="tiltle-header-right sign-in">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div>
+                                <i class="fa-solid fa-user">:</i>
+                                 @User.Identity.Name
+                                <br>
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <a asp-controller="AccountCustomer" asp-action="Logout">
+                                    Logout
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <i class="fa-solid fa-right-to-bracket"></i>
+                                <a asp-controller="AccountCustomer" asp-action="LoginAccount">
+                                    Sign in
+                                </a>
+                            </div>
+
+                        }
                     </div>
                 </div>
             </div>
             <div id="menu">
                 <div class="menu">
-                    <a href="">Trang chủ</a>
-                    <a class="nav-link text-dark" asp-controller="Products" asp-action="Index" title="freetuts">Sản phẩm</a>
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Danh sách đơn hàng</a>
+                    <a class="nav-link text-dark" asp-controller="Products" asp-action="Index" title="freetuts">Product</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">List Order</a>
                     <a class="nav-link text-dark" asp-area="" asp-controller="ProductsWithAjax" asp-action="Index">Product Ajax</a>
                 </div>
             </div>
@@ -83,5 +100,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/paginate.js"> </script>
     @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("NToastNotify")
 </body>
 </html>

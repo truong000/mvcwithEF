@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = D:\TraIning GMO\WEEK_5_6\webmvcEF\webmvcEF
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/AccountCustomer/LoginAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEN1c3RvbWVyXExvZ2luQWNjb3VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/AccountCustomer/Resgister.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEN1c3RvbWVyXFJlc2dpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -101,6 +105,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Shared/_Loginlayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbmxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/TraIning GMO/WEEK_5_6/webmvcEF/webmvcEF/Views/Shared/_ValidationScriptsPartial.cshtml]

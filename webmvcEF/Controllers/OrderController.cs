@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using webmvcEF.DTO;
+using webmvcEF.Models;
 
 namespace webmvcEF.Controllers
 {
@@ -41,8 +42,9 @@ namespace webmvcEF.Controllers
                 .AsNoTracking()
                 .Where(x => x.OrderId == order.Id)
                 .ToList();
+
             ViewBag.ChiTiet = chitietdonhang;
-            return View(order);
+            return PartialView("ShowDetail", order);
         }
 
     }
